@@ -1,0 +1,2 @@
+﻿生命周期函数指在某一时刻组件会自动执行的函数。
+tiny key: v1wfjk8ygw1sw4eo8cperhtdwj8954eda41n3i3ofzzovrp7

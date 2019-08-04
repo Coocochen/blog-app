@@ -26,9 +26,9 @@ class HeadAside extends React.Component{
     render(){
         return(
 			<HeadWrapper>
-			    <Link to="/">
+			    <a href="/">
 			        <Logo />
-			    </Link>
+			    </a>
 			    <MenuWrapper>
 			        <CSSTransition
 	                in={this.props.opened}
@@ -46,21 +46,18 @@ class HeadAside extends React.Component{
 	                classNames="Navslide"
 			        >
 						<Nav className={this.props.opened ? "show" : ""}>
-                            <Link to="/photos">
+                            <Link to="/photos" style={{textDecoration:"none"}}>
 							    <NavItem>相册</NavItem>
 							</Link>
-							<Link to="/about">
+							<Link to="/about" style={{textDecoration:"none"}}>
 							    <NavItem>关于</NavItem>
 							</Link>
 							{this.props.taglist.map((item,index)=>(
-                                <Link to={"/tag/"+item}>
+                                <Link to={"/tag/"+item} key={item} style={{textDecoration:"none"}}>
 							        <NavItem>{item}</NavItem>
 							    </Link>
 							   )
                             )}
-							<Link to="/">
-							    <NavItem>留言</NavItem>
-							</Link>
 						</Nav>
 		          </CSSTransition>
 		          <CSSTransition
@@ -76,13 +73,13 @@ class HeadAside extends React.Component{
 				  <FootAside>
 				      <Iconlist>
 				          <IconItem>
-				          	 <a href="/" className="iconfont">&#xe610;</a>
+				          	 <Link to='#' style={{textDecoration:"none"}} className="iconfont">&#xe610;</Link>
 				          </IconItem> 
 				          <IconItem>
-				          	 <a href="/" className="iconfont">&#xe6a1;</a>
+				          	 <Link to='#' style={{textDecoration:"none"}} className="iconfont">&#xe6a1;</Link>
 				          </IconItem> 
 				          <IconItem>
-				          	 <a href="/" className="iconfont">&#xe699;</a>
+				          	 <Link to='#' style={{textDecoration:"none"}} className="iconfont">&#xe699;</Link>
 				          </IconItem>   
 				      </Iconlist>
 				      <Tag>

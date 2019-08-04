@@ -32,11 +32,12 @@ function* axiosLoadMoreComment(action){
     }
 }
 
-function* axiosLoadBlogSingle(){
+function* axiosLoadBlogSingle(action){
     try{
-        const res = yield axios.get('/test/blogsingle.json');
-        const action = initBlogSingle(res.data.blogsingle);
-        yield put(action);
+        const res = yield axios.get('/test/blogsingle',{params:{id:action.id}});
+        const newaction = initBlogSingle(res.data[0]);
+        console.log(res.data);
+        yield put(newaction);
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
     }

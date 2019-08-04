@@ -15,7 +15,7 @@ import HeadAside from '../../common/header';
 class Blogdetail extends React.Component{
 
   componentDidMount(){
-    this.props.loadBlogsingle();
+    this.props.loadBlogsingle(this.props.match.params.id);
   }
 
 	render(){
@@ -29,7 +29,7 @@ class Blogdetail extends React.Component{
                   <PicWrapper>
                       <img src={this.props.blogsingle.get('imgurl')} alt="img"/>
                   </PicWrapper>
-                	<Content>{this.props.blogsingle.get('content')}</Content>
+                	<Content dangerouslySetInnerHTML = {{ __html:this.props.blogsingle.get('content')}}></Content>
                   <Comment />
                 </BlogWrapper>
               </Wrapper> 
@@ -43,8 +43,8 @@ const mapStateToProps = (state)=> ({
 })
 
 const mapDispatchToProps = (dispatch) =>({
-    loadBlogsingle: ()=>{
-      const action = actionCreators.loadBlogSingle();
+    loadBlogsingle: (id)=>{
+      const action = actionCreators.loadBlogSingle(id);
       dispatch(action);
     }
 })

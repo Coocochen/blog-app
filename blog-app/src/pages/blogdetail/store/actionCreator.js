@@ -28,8 +28,9 @@ export const getMoreCommentAction = (page) =>({
     page,
 })
 
-export const loadBlogSingle = () =>({
+export const loadBlogSingle = (id) =>({
     type: LOAD_BLOGSINGLE,
+    id,
 })
 
 export const initBlogSingle = (data) => ({

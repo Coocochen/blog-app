@@ -11,6 +11,7 @@ import Admin from './admin';
 import Login from './admin/components/login';
 import TagManager from './admin/components/tagmanager';
 import PhotosManager from './admin/components/photosmanager';
+import 'antd/dist/antd.css';
 
 class App extends React.Component {
   render(){

@@ -1,11 +1,13 @@
 import { fromJS } from 'immutable';
 import { 
 	INIT_BLOG_LIST,
-	LOAD_MORE_BLOG
+	LOAD_MORE_BLOG,
+	NO_BLOG_LEFT
 } from './constants';
 const defaultState = fromJS({ 
 	bloglist:[],
 	page: 1,
+	hasBlog: true,
 });
 
 export default (state = defaultState,action)=>{
@@ -19,6 +21,10 @@ export default (state = defaultState,action)=>{
 			bloglist:fromJS(state.get('bloglist').concat(action.data)),
 			page: fromJS(action.nextpage),
 		})
+	case NO_BLOG_LEFT:
+	    return state.merge({
+	    	hasBlog: false,
+	    })
     default:
       return state;
    }

@@ -7,8 +7,8 @@ import {
 	Title,
 	Content,
 	ImgWrapper,
-	Footer,
-	LoadMore
+	LoadMore,
+	EndLine
 } from './style';
 import HeadAside from '../../common/header';
 import { connect } from 'react-redux';
@@ -21,7 +21,6 @@ class BlogList extends React.Component{
         this.props.loadBloglist();
 	} 
 
-
 	render(){
         return (
         	<React.Fragment>
@@ -29,18 +28,28 @@ class BlogList extends React.Component{
 				<ListWrapper>
 					<List>
 					    {this.props.bloglist.map((item,index)=>(
-	                        <Link to={'/blogdetail/' + item.get('Id')}>
-	                        <ListItem key={item.get('Id')}>
+	                        <Link 
+	                            to={'/blogdetail/' + item.get('Id')}
+	                            key={item.get('Id')}
+	                            style={{textDecoration: 'none'}}
+	                         >
+	                        <ListItem>
 	                            <ImgWrapper>
 			                	    <img src= {item.get('imgurl')} alt='img' />
 			                	</ImgWrapper>
 			                	<Time>{item.get('time')}</Time> 
-			                    <Title href="/">{item.get('title')}</Title>
-			                    <Content dangerouslySetInnerHTML = {{ __html:item.get('content').substring(0,200) }}></Content>
+			                    <Title>{item.get('title')}</Title>
+			                    <Content dangerouslySetInnerHTML = {{ __html:item.get('content').substring(0,100) }}></Content><span>...</span>
 		                    </ListItem>
 		                    </Link>
 					    ))}
-					    <LoadMore className="iconfont" onClick={() => this.props.loadmore(this.props.page)}>&#xe61e;</LoadMore>
+					    <LoadMore 
+					         className={this.props.hasBlog?"iconfont":"iconfont hidden"} 
+					         onClick={() => this.props.loadmore(this.props.page)}
+					      >
+					      &#xe61e;
+					    </LoadMore>
+		                <EndLine className={this.props.hasBlog?"hidden":""}/>
 		            </List>
 	            </ListWrapper>
 	        </React.Fragment>
@@ -51,6 +60,7 @@ class BlogList extends React.Component{
 const mapStateToProps=(state) => ({
    bloglist: state.get('blog').get('bloglist'),
    page: state.get('blog').get('page'),
+   hasBlog: state.get('blog').get('hasBlog'),
 })
 
 const mapDispatchToProps = (dispatch) =>({

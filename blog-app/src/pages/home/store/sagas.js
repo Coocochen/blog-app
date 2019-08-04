@@ -3,10 +3,11 @@ import axios from 'axios';
 import { 
     getBlogListAction,
     loadMoreBlog,
+    changeHasBlogToFalse
  } from './actionCreator';
 import { 
     LOAD_BLOGLIST,
-    GET_MORE_BLOG
+    GET_MORE_BLOG,
 } from './constants';
 
 function* axiosBlogList() {
@@ -28,8 +29,13 @@ function* loadbloglistSaga() {
 function* axiosLoadMoreBlog(action){
     try {   
         const res = yield axios.get('/test/showbloglist',{params:{page: action.page}});
-        const newaction = loadMoreBlog(res.data,action.page+1);     
-        yield put(newaction); 
+        if(res.data.length===0){
+            const newaction = changeHasBlogToFalse();
+            yield put(newaction);
+        }else{
+            const newaction = loadMoreBlog(res.data,action.page+1);     
+            yield put(newaction);
+        }
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
     }

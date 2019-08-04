@@ -70,4 +70,22 @@ export const LoadMore = styled.div`
     &:active{
         color:#7CD9FF
     }
+    &.hidden{
+        display:none;
+    }
+`
+export const EndLine = styled.div`
+    width:100%;
+    text-align:center;
+    font-size: 12px;
+    color:#999;
+    margin: 40px 0;
+    padding: 10px;
+    &:after{
+        content:"我也是有底线的~";
+    }
+    border-top:0.4px solid #999;
+    &.hidden{
+        display:none;
+    }
 `

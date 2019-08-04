@@ -3,9 +3,10 @@ import * as constants from './constants';
 
 const defaultState = fromJS({
 	login: false,
+    posting: false,  //发布
 	titlelist: [],
 	edited: false,
-    tags: ["2","3"],
+    tags: [],
 })
 
 export default (state=defaultState,action) =>{
@@ -29,6 +30,14 @@ export default (state=defaultState,action) =>{
         case constants.INIT_TAGGROUP:
             return state.merge({
                 tags: fromJS(action.data)
+            })
+        case constants.CHANGE_TO_POSTING:
+            return state.merge({
+                posting: true
+            })
+        case constants.CHANGE_TO_UNPOSTING:
+            return state.merge({
+                posting: false
             })
     	default:
     	    return state;

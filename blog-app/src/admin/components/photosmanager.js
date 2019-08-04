@@ -4,10 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import {
   Logo,
-  Button,
   Wrapper,
 } from '../style';
-import BlogManager from './blogmanager';
 
 const { Header, Sider, Content } = Layout;
 

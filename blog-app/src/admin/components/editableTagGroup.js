@@ -16,7 +16,7 @@ class EditableTagGroup extends React.Component {
   }
 
   handleClose = removedTag => {
-    const tags = this.props.tags.filter(tag => tag !== removedTag);
+    //const tags = this.props.tags.filter(tag => tag !== removedTag);
     // this.setState({ tags });
   };
 
@@ -29,15 +29,15 @@ class EditableTagGroup extends React.Component {
   };
 
   handleInputConfirm = () => {
-    const { inputValue } = this.state;
-    let { tags } = this.props;
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue];
-    }
-    this.setState({
-      inputVisible: false,
-      inputValue: '',
-    });
+    // const { inputValue } = this.state;
+    // let { tags } = this.props;
+    // if (inputValue && tags.indexOf(inputValue) === -1) {
+    //   tags = [...tags, inputValue];
+    // }
+    // this.setState({
+    //   inputVisible: false,
+    //   inputValue: '',
+    // });
 
   };
 

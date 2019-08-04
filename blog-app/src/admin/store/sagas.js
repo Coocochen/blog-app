@@ -20,7 +20,6 @@ function* changeLoginSaga(){
 function* axiosInitTitlelist(){
     try{
         const res =  yield axios.get('/test/titlelist.json');
-        console.log(res.data);
         const action = actionCreators.initTitlelist(res.data.titlelist);
         yield put(action);
     }catch(e){
@@ -43,13 +42,38 @@ function* axiosInitTagGroup(){
 }
 
 function* initTagGroupSaga(){
-    yield takeEvery(constants.LOAD_TAGGROUP,axiosInitTagGroup)
+    yield takeEvery(constants.LOAD_TAGGROUP,axiosInitTagGroup);
+}
+
+function* axiosPostBlog(action){
+     try{
+        const res  = yield axios.post('/test/postBlog',
+                                       action.formdata,
+                                       {headers:{
+                                           "Content-Type": "multipart/form-data" 
+                                        }});
+        const newaction = actionCreators.changeToUnPosting();
+        yield put(newaction);
+        if(res.data==="success"){
+           alert("发表成功");
+        }
+        else{
+            alert("发表失败");
+        }
+    }catch(e){
+         console.log('接口请求失败，错误信息：', e.message);
+    }
+}
+
+function* postBlogSaga(){
+    yield takeEvery(constants.POST_BLOG,axiosPostBlog);
 }
 
 function* adminSaga(){
    yield fork(changeLoginSaga);
    yield fork(initTitlelistSaga);
    yield fork(initTagGroupSaga);
+   yield fork(postBlogSaga);
 }
 
 export default adminSaga;

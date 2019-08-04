@@ -55,8 +55,19 @@ export const Content = styled.p`
     	color: #000;
     }
 `
-export const Footer = styled.div`
-    width: 100%;
-    padding-top: 50px;
+
+export const LoadMore = styled.div`
+    width:100%;
     text-align: center;
+    margin: 40px 0;
+    cursor: pointer;
+    border: 0.4px solid #999;
+    border-radius: 5px;
+    &:hover{
+        font-size:20px;
+        color:#000;
+    }
+    &:active{
+        color:#7CD9FF
+    }
 `

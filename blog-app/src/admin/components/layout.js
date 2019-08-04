@@ -40,15 +40,15 @@ class SideLayout extends React.Component {
               </CSSTransition>
               <Menu.Item key="1">
                 <Icon type="user" />
-                <span><Link to='/admin'>博客管理</Link></span>
+                <span>博客管理</span>
               </Menu.Item>
               <Menu.Item key="2">
                 <Icon type="video-camera" />
-                <span><Link to='/tagmanager'>标签管理</Link></span>
+                <span>标签管理</span>
               </Menu.Item>
               <Menu.Item key="3">
                 <Icon type="upload" />
-                <span><Link to='/photosmanager'>相册管理</Link></span>
+                <span>相册管理</span>
               </Menu.Item>
               <Menu.Item key="4">
                 <Icon type="upload" />

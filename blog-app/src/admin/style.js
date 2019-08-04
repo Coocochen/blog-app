@@ -126,9 +126,7 @@ export const Button = styled.button`
         color: #fff;
     }
 `
-export const SaveButton = styled(Button)`
-    float: right;
-`
+
 export const BackButton = styled(Button)`
     float: left;
     &:before{

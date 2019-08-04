@@ -37,3 +37,16 @@ export const initTagsGroupAction = (data)=>({
     type: constants.INIT_TAGGROUP,
     data
 })
+
+export const postBlogAction = (formdata) =>({
+	type: constants.POST_BLOG,
+	formdata,
+})
+
+export const changeToPosting = () =>({
+	type:constants.CHANGE_TO_POSTING,
+})
+
+export const changeToUnPosting = () =>({
+	type: constants.CHANGE_TO_UNPOSTING,
+})

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import Login from './components/login';
+// import Login from './components/login';
 import { connect } from 'react-redux';
 import SideLayout from './components/layout';
 
@@ -10,9 +9,7 @@ class Admin extends React.Component{
 		// 	return <Redirect to='/login' />
 		// }
 		return (
-			<React.Fragment>
-				<SideLayout />
-			</React.Fragment>
+			<SideLayout />
 		);
 	}
 }

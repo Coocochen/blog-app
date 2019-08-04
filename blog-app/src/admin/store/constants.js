@@ -6,3 +6,6 @@ export const CLICK_EDIT = "click_edit";
 export const CLICK_BACK = "click_back";
 export const LOAD_TAGGROUP = "load_taggroup";
 export const INIT_TAGGROUP = "init_taggroup";
+export const POST_BLOG = "post_blog";
+export const CHANGE_TO_POSTING = "change_to_posting";
+export const CHANGE_TO_UNPOSTING = "change_to_unposting";

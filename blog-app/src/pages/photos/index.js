@@ -12,7 +12,6 @@ import {
 } from 'antd';
 import HeadAside from '../../common/header';
 import { connect } from 'react-redux';
-import imgurl from '../../statics/picture/img1.jpg';
 import { actionCreators } from './store';
 
 class Photos extends React.Component{

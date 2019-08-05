@@ -10,7 +10,7 @@ import {
     GET_MORE_COMMENT,
     LOAD_BLOGSINGLE,
 } from './constants';
-
+import Prism from 'prismjs';
 function* axiosCommentList() {
     try {
         // 正常返回之后，数据直接给res     
@@ -36,8 +36,8 @@ function* axiosLoadBlogSingle(action){
     try{
         const res = yield axios.get('/test/blogsingle',{params:{id:action.id}});
         const newaction = initBlogSingle(res.data[0]);
-        console.log(res.data);
         yield put(newaction);
+        Prism.highlightAll();
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
     }

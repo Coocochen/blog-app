@@ -11,8 +11,11 @@ import Admin from './admin';
 import Login from './admin/components/login';
 import TagManager from './admin/components/tagmanager';
 import PhotosManager from './admin/components/photosmanager';
+import EditPage from './admin/components/editorpage';
 import 'antd/dist/antd.css';
+import Prism from 'prismjs';
 
+Prism.highlightAll();
 class App extends React.Component {
   render(){
     return (
@@ -27,7 +30,8 @@ class App extends React.Component {
               <Route path="/admin" exact component={Admin} />
               <Route path="/login" exact component={Login} />
               <Route path="/tagmanager" exact component={TagManager} />
-              <Route path="/photosmanager" exact component={PhotosManager} />
+              <Route path="/photosmanager" exact component={PhotosManager} /> 
+              <Route path="/edit/:id" exact component={EditPage} />
           </BrowserRouter>
       </Provider>
       <GlobalStyle />

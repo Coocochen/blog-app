@@ -4,12 +4,13 @@ import {
 	LOAD_MORE_COMMENT,
 	INIT_BLOGSINGLE
  } from './constants';
-
+import Prism from 'prismjs';
 const defaultState = fromJS({
 	commentlist: [],
 	commentPage: 1,
 	blogsingle: {},
 });
+
 
 export default (state = defaultState, action) =>{
 	switch(action.type){

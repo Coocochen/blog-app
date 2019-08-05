@@ -12,28 +12,42 @@ import {
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 import EditBlog from './editBlog';
+import { Popconfirm} from 'antd';
+import { Link } from 'react-router-dom';
 
 class BlogListManager extends React.Component{
     
     componentDidMount(){
         this.props.loadTitlelist();
     }
+    confirm(id) {
+		this.props.deleteBlogById(id);
+	}
 
 	render(){
 			if(!this.props.edited){
 			    return(
 			        <BlogListWrapper>
 		           	     {this.props.titlelist.map((item,index)=>(
-		           	     	<BlogItem key={item.get('id')}>
+		           	     	<BlogItem key={item.get('Id')}>
 		                        <Title>{item.get('title')}</Title>
 		                        <Time>{item.get('time')}</Time>
 		           	            <RightItem>
-					           	    <Edit onClick={()=>this.props.clickEdit(item.get('id'))}>编辑</Edit>
-					           	    <Delete>删除</Delete>
+					           	    <a href={'/edit/'+ item.get('Id')} style={{textDecoration: 'none'}}><Edit>编辑</Edit></a>
+					           	    <Delete>
+					           	    <Popconfirm
+									    title="确定要删除这篇博客吗？"
+									    onConfirm={()=>this.confirm(item.get('Id'))}
+									    okText="Yes"
+									    cancelText="No"
+									  >
+					           	        删除
+					           	    </Popconfirm>
+					           	    </Delete>
 		           	            </RightItem>
 		           	        </BlogItem> 
 		                  ))}
-		           	     <Button onClick={()=>this.props.clickEdit(-1)}>添加博客</Button>
+		           	     <Link to="/edit/-1"><Button>添加博客</Button></Link>
                     </BlogListWrapper>	
 			    );
 			}
@@ -45,7 +59,6 @@ class BlogListManager extends React.Component{
 
 const mapStateToProps = (state) =>({
     titlelist: state.get('admin').get('titlelist'),
-    edited: state.get('admin').get('edited'),
 })
 
 const mapDispatchToProps = (dispatch) =>({
@@ -53,9 +66,10 @@ const mapDispatchToProps = (dispatch) =>({
     	const action = actionCreators.loadTitleListAction();
     	dispatch(action);
     },
-    clickEdit: (id) => {
-    	const action = actionCreators.clickEditAction(id);
-    	dispatch(action);
+    deleteBlogById: (id) => {
+        console.log(id);
+        const action = actionCreators.deleteBlogById(id);
+        dispatch(action);
     }
 })
 

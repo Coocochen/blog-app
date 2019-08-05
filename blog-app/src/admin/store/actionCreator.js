@@ -20,15 +20,6 @@ export const initTitlelist = (data) =>({
 	data
 })
 
-export const clickEditAction = (id) =>({
-	type: constants.CLICK_EDIT,
-	id
-})
-
-export const clickBackAction = () =>({
-	type: constants.CLICK_BACK,
-})
-
 export const loadTagGroupAction = ()=>({
 	type: constants.LOAD_TAGGROUP,
 })
@@ -38,9 +29,10 @@ export const initTagsGroupAction = (data)=>({
     data
 })
 
-export const postBlogAction = (formdata) =>({
+export const postBlogAction = (formdata,id) =>({
 	type: constants.POST_BLOG,
 	formdata,
+	id,
 })
 
 export const changeToPosting = () =>({
@@ -49,4 +41,73 @@ export const changeToPosting = () =>({
 
 export const changeToUnPosting = () =>({
 	type: constants.CHANGE_TO_UNPOSTING,
+})
+
+export const loadDefaulBlogAction = (id) => ({
+	type: constants.LOAD_DEFAULT_BLOG,
+	id,
+})
+
+export const initDefaultBlog = (data) => ({
+	type: constants.INIT_DEFAULT_BLOG,
+	data,
+})
+
+export const deleteBlogById = (id) =>({
+	type: constants.DELETE_BLOG_BY_ID,
+	id,
+})
+
+export const changeBlogTitle= (title) => ({
+	type: constants.CHANGE_BLOG_TITLE,
+	title
+})
+
+export const changeBlogTag = (tag) => ({
+    type:constants.CHANGE_BLOG_TAG,
+    tag
+})
+
+export const changeBlogEditor = (content) =>({
+	type: constants.CHANGE_BLOG_CONTENT,
+	content,
+})
+
+export const removeBlogPicture = (index) =>({
+	type: constants.REMOVE_BLOG_PICTURE,
+	index,
+})
+
+export const initFileList = (fileList) =>({
+	type: constants.INIT_FILELIST,
+	fileList,
+})
+
+export const addBlogPicture = (file) =>({
+	type: constants.ADD_BLOG_PICTURE,
+	file,
+})
+
+export const changeInputValueAction = (value) =>({
+    type: constants.CHANGE_INPUT_VALUE,
+    value,
+})
+
+export const showInputAction = () =>({
+	type: constants.SHOW_INPUT,
+})
+
+export const addInputTagAction =(inputValue) => ({
+	type: constants.ADD_INPUT_TAG,
+	inputValue,
+})
+
+export const hideTagInput = (inputValue) =>({
+	type: constants.HIDE_TAG_INPUT,
+	inputValue,
+})
+
+export const deleteBlogInList = (id) =>({
+	type: constants.DELETE_BLOG_IN_LIST,
+	id,
 })

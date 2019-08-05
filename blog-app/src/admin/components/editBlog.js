@@ -1,6 +1,7 @@
 import React from 'react';
 import { Upload, Icon } from 'antd';
 import { Editor } from '@tinymce/tinymce-react';
+import { withRouter} from 'react-router-dom';
 import {
 	EditWrapper,
 	InputTitle,
@@ -11,71 +12,56 @@ import {
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 import { Button } from 'antd';
-
+import { Link } from 'react-router-dom';
 
 class EditBlog extends React.Component{
-    state = {
-        fileList: [],  //图片
-        newTitle: "",
-        newTag: "",
-        newContent: "",
-    };
 
     handleTitleChange(e){
-        this.setState({
-            newTitle: e.target.value
-        })
+        this.props.changeBlogTitle(e.target.value);
     }
 
     handleTagChange(e){
-        this.setState({
-            newTag: e.target.value
-        })
+        this.props.changeBlogTag(e.target.value);
     }
 
     handleEditorChange(e){
-        this.setState({
-            newContent: e.target.getContent()
-        })
+        this.props.changeBlogEditor(e.target.getContent()); 
+        // console.log(e.target.getContent( { 'format' : 'text' } ).substr(0,200));
     }
 
     handleBlogPost(){
-        const { fileList, newTitle, newTag, newContent } = this.state;
         const formdata = new FormData();
-        formdata.append('file', fileList[0]);
-        formdata.append('title', newTitle);
-        formdata.append('tag', newTag);
-        formdata.append('content', newContent);
+        formdata.append('file', this.props.fileList.toJS()[0]);
+        formdata.append('title', this.props.blog.get('title'));
+        formdata.append('tag',  this.props.blog.get('tag'));
+        formdata.append('content', this.props.blog.get('content'));
         console.log(formdata);
         this.props.changeToPosting();
-        this.props.postBlog(formdata);
+        this.props.postBlog(formdata,this.props.match.params.id);
+    }
+
+    componentDidMount(){
+        this.props.loadDefaultBlog(this.props.match.params.id);
     }
 
     render(){
-        const { fileList } = this.state;
+        const { fileList, removeBlogPicture, addBlogPicture } = this.props;
         const props = {
             onRemove: file => {
-                this.setState(state => {
-                  const index = state.fileList.indexOf(file);
-                  const newFileList = state.fileList.slice();
-                  newFileList.splice(index,  1);
-                  return {
-                    fileList: newFileList,
-                  };
-                });
+                const index = fileList.toJS().indexOf(file); 
+                removeBlogPicture(index);
               },
-            beforeUpload: file => {   
-                this.setState(state => ({
-                  fileList: [...state.fileList, file],
-                }));
+            beforeUpload: file => {  
+                addBlogPicture(file);
                 return false;     
               },
-            fileList,
+            fileList:fileList.toJS(),
+            listType: 'picture',
         };
 
     	return (
             <EditWrapper>
-                <BackButton onClick={this.props.handleClickBack.bind(this)}>返回</BackButton>
+                <Link to="/admin"><BackButton>返回</BackButton></Link>
             	<Button
                     style={{float:'right'}}
                     type="primary"
@@ -84,10 +70,18 @@ class EditBlog extends React.Component{
                 >
                   发表
                 </Button>
-                <InputTitle onChange={this.handleTitleChange.bind(this)}  placeholder="标题" />
+                <InputTitle 
+                    onChange={this.handleTitleChange.bind(this)}  
+                    placeholder="标题" 
+                    value={this.props.blog.get('title')}
+                />
             	<Wrapper>
             		<label htmlFor="tagselect">标签：</label>
-            		<select id="tagselect" onChange={(e)=>this.handleTagChange(e)}>
+            		<select 
+                        id="tagselect" 
+                        onChange={(e)=>this.handleTagChange(e)} 
+                        value={this.props.blog.get('tag')}
+                    >
             			<option>标签一</option>
             			<option>标签二</option>
             			<option >标签三</option>
@@ -102,7 +96,7 @@ class EditBlog extends React.Component{
             	</Wrapper>
             	<EditorWrapper>
             	    <Editor
-				        initialValue="<p>This is the initial content of the editor</p>"
+				        initialValue={this.props.blog.get('content')}
 				        init={{
 				            height: '400px',
 					        plugins: 'codesample',
@@ -131,21 +125,43 @@ class EditBlog extends React.Component{
 
 const mapStateToProps = (state) =>({
     posting: state.get('admin').get('posting'),
+    blog: state.get("admin").get('blog'),
+    fileList: state.get('admin').get('fileList')
 })
 
 const mapDispatchToProps = (dispatch) =>({
-	handleClickBack: ()=>{
-        const action=actionCreators.clickBackAction();
-        dispatch(action);
-	},
-    postBlog: (formdata)=>{
-        const action=actionCreators.postBlogAction(formdata);
+    postBlog: (formdata,id)=>{
+        const action=actionCreators.postBlogAction(formdata,id);
         dispatch(action);
     },
     changeToPosting: ()=>{
         const action=actionCreators.changeToPosting();
         dispatch(action);
+    },
+    loadDefaultBlog: (id)=>{
+        const action=actionCreators.loadDefaulBlogAction(id);
+        dispatch(action);
+    },
+    changeBlogTitle: (title)=>{
+        const action=actionCreators.changeBlogTitle(title);
+        dispatch(action);
+    },
+    changeBlogTag: (tag) =>{
+        const action=actionCreators.changeBlogTag(tag);
+        dispatch(action);
+    },
+    changeBlogEditor: (content) =>{
+        const action=actionCreators.changeBlogEditor(content);
+        dispatch(action);
+    },
+    removeBlogPicture: (index) =>{
+        const action=actionCreators.removeBlogPicture(index);
+        dispatch(action);
+    },
+    addBlogPicture: (file) =>{
+        const action=actionCreators.addBlogPicture(file);
+        dispatch(action);
     }
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(EditBlog);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(EditBlog));

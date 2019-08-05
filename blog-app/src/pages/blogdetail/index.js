@@ -29,7 +29,7 @@ class Blogdetail extends React.Component{
                   <PicWrapper>
                       <img src={this.props.blogsingle.get('imgurl')} alt="img"/>
                   </PicWrapper>
-                	<Content dangerouslySetInnerHTML = {{ __html:this.props.blogsingle.get('content')}}></Content>
+                  <Content dangerouslySetInnerHTML = {{ __html:this.props.blogsingle.get('content')}} />
                   <Comment />
                 </BlogWrapper>
               </Wrapper> 

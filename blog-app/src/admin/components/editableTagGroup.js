@@ -5,11 +5,6 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
 class EditableTagGroup extends React.Component {
-
-  state = {
-    inputVisible: false,
-    inputValue: '',
-  };
   
   componentDidMount(){
     this.props.loadTagGoup();
@@ -21,16 +16,14 @@ class EditableTagGroup extends React.Component {
   };
 
   showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
+    this.props.showInput();
   };
 
   handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
+    this.props.changeInputValue(e.target.value);
   };
 
   handleInputConfirm = () => {
-    // const { inputValue } = this.state;
-    // let { tags } = this.props;
     // if (inputValue && tags.indexOf(inputValue) === -1) {
     //   tags = [...tags, inputValue];
     // }
@@ -38,6 +31,7 @@ class EditableTagGroup extends React.Component {
     //   inputVisible: false,
     //   inputValue: '',
     // });
+      this.props.addInputTag(this.props.inputValue);
 
   };
 
@@ -63,7 +57,7 @@ class EditableTagGroup extends React.Component {
     );
   };
   render() {
-    const { inputVisible, inputValue } = this.state;
+    const { inputVisible, inputValue } = this.props;
     const tagChild = this.props.tags.map(this.forMap);
     return (
       <div>
@@ -108,12 +102,26 @@ class EditableTagGroup extends React.Component {
 
 const mapStateToProps = (state) =>({
    tags: state.get('admin').get('tags'),
+   inputVisible: state.get('admin').get('inputVisible'),
+   inputValue: state.get('admin').get('inputValue'),
 })
 
 const mapDispatchToProps = (dispatch) =>({
-  loadTagGoup: ()=>{
+  loadTagGoup: () => {
     const action = actionCreators.loadTagGroupAction();
     dispatch(action) ;   
+  },
+  changeInputValue: (value) => {
+    const action = actionCreators.changeInputValueAction(value);
+    dispatch(action);
+  },
+  showInput: () => {
+    const action = actionCreators.showInputAction();
+    dispatch(action);
+  },
+  addInputTag: (inputValue) => {
+    const action = actionCreators.addInputTagAction(inputValue);
+    dispatch(action);
   }
 })
 

@@ -40,24 +40,28 @@ class TagManager extends React.Component {
                   <Logo />
               </CSSTransition>
               <Menu.Item key="1">
-                <Icon type="user" />
-                <span>>博客管理</span>
+                <Link to="/admin">
+                  <Icon type="user" />
+                  <span>博客管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon type="video-camera" />
-                <span>标签管理</span>
+                <Link to="/tagmanager">
+                  <Icon type="video-camera" />
+                  <span>标签管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Icon type="upload" />
-                <span>相册管理</span>
+                <Link to="/photosmanager">
+                  <Icon type="upload" />
+                  <span>相册管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="4">
-                <Icon type="upload" />
-                <span>评论管理</span>
-              </Menu.Item>
-              <Menu.Item key="5">
-                <Icon type="upload" />
-                <span>修改密码</span>
+                <Link to="/commentmanager">
+                  <Icon type="upload" />
+                  <span>评论管理</span>
+                </Link>
               </Menu.Item>
             </Menu>
           </Sider>

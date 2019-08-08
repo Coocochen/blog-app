@@ -10,7 +10,8 @@ const defaultState = fromJS({
     fileList: [], //图片
     inputVisible: false,  //tag的输入框
     inputValue: '',
-
+    photolist: [],
+    commentlist: [],
 })
 
 export default (state=defaultState,action) =>{
@@ -84,13 +85,35 @@ export default (state=defaultState,action) =>{
             return state.merge({
                 inputVisible: false,
                 inputValue: '',
-                tags: [...state.get('tags').toJS(),action.inputValue],
+                tags: fromJS([...state.get('tags').toJS(),action.inputValue]),
             })
         case constants.DELETE_BLOG_IN_LIST:
             const newTitlelist = [...state.get('titlelist').toJS()].filter((item)=>(item.Id !== action.id));
             return state.merge({
                 titlelist: fromJS(newTitlelist),
             })
+        case constants.REMOVE_TAG_IN_LIST:
+            const newtags = [...state.get('tags').toJS()].filter(tag => tag !== action.removedTag);
+            return state.merge({
+                tags: fromJS(newtags),
+            })
+        case constants.INIT_PHOTOS_GROUP:
+            return state.merge({
+                photolist: fromJS(action.photolist),
+            })
+        case constants.CHANGE_PHOTOS:
+            return state.merge({
+                photolist: fromJS(action.photolist)
+            })
+        case constants.INIT_COMMENT_LIST:
+            return state.merge({
+                commentlist: fromJS(action.data)
+            })
+        case constants.DELETE_COMMENT_IN_LIST:
+            const newCommentlist = [...state.get('commentlist').toJS()].filter((item)=>(item.id !== action.id));
+            return state.merge({
+                commentlist: fromJS(newCommentlist),
+            }) 
     	default:
     	    return state;
     }

@@ -1,9 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import EditBlog from './editBlog';
 import { Layout, Menu, Icon } from 'antd';
 import { CSSTransition } from 'react-transition-group';
-import { Link } from 'react-router-dom';
 import {
   Logo
 } from '../style';

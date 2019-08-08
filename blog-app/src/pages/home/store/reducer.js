@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import { 
 	INIT_BLOG_LIST,
 	LOAD_MORE_BLOG,
-	NO_BLOG_LEFT
+    NO_BLOG_LEFT
 } from './constants';
 const defaultState = fromJS({ 
 	bloglist:[],

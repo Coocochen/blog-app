@@ -6,8 +6,9 @@ import {
 	NO_BLOG_LEFT
 } from './constants';
 import { fromJS } from 'immutable';
-export const loadBloglist = ()=>({
+export const loadBloglist = (id)=>({
     type: LOAD_BLOGLIST,
+    id
 })
 
 export const getBlogListAction = (data)=>({
@@ -15,10 +16,10 @@ export const getBlogListAction = (data)=>({
 	bloglist: data,
 })
 
-export const getMoreBlogAction = (page,hasBlog) =>({
+export const getMoreBlogAction = (page,id) =>({
     type: GET_MORE_BLOG,
     page,
-    hasBlog
+    id
 })
 
 export const loadMoreBlog = (data,nextpage) =>({

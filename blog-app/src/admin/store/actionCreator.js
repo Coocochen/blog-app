@@ -111,3 +111,51 @@ export const deleteBlogInList = (id) =>({
 	type: constants.DELETE_BLOG_IN_LIST,
 	id,
 })
+
+export const removeTagAction = (removedTag) => ({
+	type: constants.REMOVE_TAG,
+	removedTag,
+})
+
+export const removeTagInList = (removedTag) => ({
+	type: constants.REMOVE_TAG_IN_LIST,
+	removedTag
+})
+
+export const loadPhotosAction = () =>({
+	type: constants.LOAD_PHOTOS,
+})
+
+export const initPhotosGroup = (photolist) =>({
+	type: constants.INIT_PHOTOS_GROUP,
+	photolist,
+})
+
+export const changePhotosAction = (photolist) =>({
+	type: constants.CHANGE_PHOTOS,
+	photolist,
+})
+
+export const removePhotoAction = (id) =>({
+	type: constants.REMOVE_PHOTO,
+	id,
+})
+
+export const loadCommentlistAction = () => ({
+	type: constants.LOAD_COMMENT_LIST,
+})
+
+export const initCommentList = (data) =>({
+	type: constants.INIT_COMMENT_LIST,
+	data
+})
+
+export const deleteCommentByIdAction = (id) => ({
+	type: constants.DELETE_COMMENT_BY_ID,
+	id
+})
+
+export const deleteCommentInList = (id) =>({
+	type: constants.DELETE_COMMENT_IN_LIST,
+	id
+})

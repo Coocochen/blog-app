@@ -41,6 +41,7 @@ class EditBlog extends React.Component{
     }
 
     componentDidMount(){
+        this.props.loadTaglist();
         this.props.loadDefaultBlog(this.props.match.params.id);
     }
 
@@ -82,9 +83,9 @@ class EditBlog extends React.Component{
                         onChange={(e)=>this.handleTagChange(e)} 
                         value={this.props.blog.get('tag')}
                     >
-            			<option>标签一</option>
-            			<option>标签二</option>
-            			<option >标签三</option>
+            			{this.props.tags.map((item)=>(
+                            <option key={item}>{item}</option>
+                        ))}
             		</select>
             	</Wrapper>
             	<Wrapper>
@@ -98,7 +99,7 @@ class EditBlog extends React.Component{
             	    <Editor
 				        initialValue={this.props.blog.get('content')}
 				        init={{
-				            height: '400px',
+				            height: '800px',
 					        plugins: 'codesample',
 					        codesample_languages: [
 								{text: 'HTML/XML', value: 'markup'},
@@ -126,7 +127,8 @@ class EditBlog extends React.Component{
 const mapStateToProps = (state) =>({
     posting: state.get('admin').get('posting'),
     blog: state.get("admin").get('blog'),
-    fileList: state.get('admin').get('fileList')
+    fileList: state.get('admin').get('fileList'),
+    tags: state.get('admin').get('tags'),
 })
 
 const mapDispatchToProps = (dispatch) =>({
@@ -161,6 +163,10 @@ const mapDispatchToProps = (dispatch) =>({
     addBlogPicture: (file) =>{
         const action=actionCreators.addBlogPicture(file);
         dispatch(action);
+    },
+    loadTaglist: () =>{
+        const action = actionCreators.loadTagGroupAction();
+        dispatch(action) ; 
     }
 })
 

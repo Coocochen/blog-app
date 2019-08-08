@@ -27,7 +27,7 @@ class Photos extends React.Component{
 	            <PhotosWrapper>
 	            	<Row>
 	            	    {this.props.picturelist.map((item,index)=>(
-	                        <Col xs={{ span: 8}} lg={{ span: 4}}>
+	                        <Col xs={{ span: 8}} lg={{ span: 4}} key={item.get('id')}>
 						    <ImgWrapper>
 						        <img src={item.get('imgurl')} alt="pic" width='100%' height='100%'/>
 						        <Caption>

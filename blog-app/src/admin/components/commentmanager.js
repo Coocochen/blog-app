@@ -3,13 +3,13 @@ import { Layout, Menu, Icon } from 'antd';
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import {
-  Logo
+  Logo,
 } from '../style';
-import BlogManager from './blogmanager';
+import EditComment from './editcomment';
 
 const { Header, Sider, Content } = Layout;
 
-class SideLayout extends React.Component {
+class CommentsManager extends React.Component {
   state = {
     collapsed: false,
   };
@@ -30,7 +30,7 @@ class SideLayout extends React.Component {
           collapsible 
           collapsed={this.state.collapsed}
           >
-            <Menu theme="white" mode="inline" defaultSelectedKeys={['1']} style={{ height: '100%' }}>
+            <Menu theme="white" mode="inline" defaultSelectedKeys={['4']} style={{ height: '100%' }}>
               <CSSTransition
                   in={this.state.collapsed}
                   timeout={200}
@@ -81,7 +81,7 @@ class SideLayout extends React.Component {
               minHeight: 700,
             }}
           >
-           <BlogManager />
+           <EditComment />    
           </Content>
         </Layout>
       </Layout>
@@ -90,4 +90,4 @@ class SideLayout extends React.Component {
 }
 
 
-export default SideLayout;
+export default CommentsManager;

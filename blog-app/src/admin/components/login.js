@@ -26,7 +26,7 @@ class Login extends React.Component{
 			        		<Input type="password" name="password" id="password" required ref={(input)=>{this.password=input}}/>
 		        		</Row>
 		        		<Row>
-		        			<SubmitInput type="button" value="登陆" onClick={()=>this.props.clicklogin(this.admin,this.password)}/>
+		        			<SubmitInput type="button" value="登陆" onClick={()=>this.props.clicklogin(this.admin.value,this.password.value)}/>
 		        		</Row>
         	        </Form>
                  );

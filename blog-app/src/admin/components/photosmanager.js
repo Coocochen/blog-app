@@ -4,8 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
 import {
   Logo,
-  Wrapper,
 } from '../style';
+import EditPhotos from './editPhotos';
 
 const { Header, Sider, Content } = Layout;
 
@@ -30,7 +30,7 @@ class PhotosManager extends React.Component {
           collapsible 
           collapsed={this.state.collapsed}
           >
-            <Menu theme="white" mode="inline" defaultSelectedKeys={['2']} style={{ height: '100%' }}>
+            <Menu theme="white" mode="inline" defaultSelectedKeys={['3']} style={{ height: '100%' }}>
               <CSSTransition
                   in={this.state.collapsed}
                   timeout={200}
@@ -39,24 +39,28 @@ class PhotosManager extends React.Component {
                   <Logo />
               </CSSTransition>
               <Menu.Item key="1">
-                <Icon type="user" />
-                <span><Link to='/admin'>博客管理</Link></span>
+                <Link to="/admin">
+                  <Icon type="user" />
+                  <span>博客管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="2">
-                <Icon type="video-camera" />
-                <span><Link to='/tagmanager'>标签管理</Link></span>
+                <Link to="/tagmanager">
+                  <Icon type="video-camera" />
+                  <span>标签管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Icon type="upload" />
-                <span><Link to='/photosmanager'>相册管理</Link></span>
+                <Link to="/photosmanager">
+                  <Icon type="upload" />
+                  <span>相册管理</span>
+                </Link>
               </Menu.Item>
               <Menu.Item key="4">
-                <Icon type="upload" />
-                <span>评论管理</span>
-              </Menu.Item>
-              <Menu.Item key="5">
-                <Icon type="upload" />
-                <span>修改密码</span>
+                <Link to="/commentmanager">
+                  <Icon type="upload" />
+                  <span>评论管理</span>
+                </Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -77,8 +81,7 @@ class PhotosManager extends React.Component {
               minHeight: 700,
             }}
           >
-            <Wrapper>
-            </Wrapper>
+            <EditPhotos />
           </Content>
         </Layout>
       </Layout>

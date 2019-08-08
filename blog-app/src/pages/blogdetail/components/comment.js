@@ -9,16 +9,18 @@ import {
 	PostDate,
 	CommentContent,
 	LoadMore,
+	EndLine
 } from '../style';
 import imgurl from '../../../statics/male.jpg';
 import InputGroup from './inputgroup';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
+import { withRouter} from 'react-router-dom';
 
 class Comment extends React.Component{
  
     componentDidMount(){
-    	this.props.getCommentlist(this.props.page);
+    	this.props.getCommentlist(this.props.match.params.id);
     }
 
 	render(){
@@ -33,12 +35,17 @@ class Comment extends React.Component{
 		            	    <Avatar>
 		            	    	<img src={imgurl} alt="avatar"/>
 		            	    </Avatar>
-	            	    	<Author>{item.get('author')}</Author>
-	                        <PostDate>{item.get('postdate')}</PostDate>
-	                        <CommentContent>{item.get('commentcontent')}</CommentContent>
+	            	    	<Author>{item.get('name')}</Author>
+	                        <PostDate>{item.get('time')}</PostDate>
+	                        <CommentContent>{item.get('comment')}</CommentContent>
 	                    </CommentItem>
 	                ))}
-	                <LoadMore className="iconfont" onClick={() => this.props.loadmore(this.props.page)}>&#xe61e;</LoadMore>
+	                <LoadMore 
+	                    className={this.props.hasComment?"iconfont":"iconfont hidden"}  
+	                    onClick={() => this.props.loadmore(this.props.page,this.props.match.params.id)}>
+	                    &#xe61e;
+	                </LoadMore>
+	                <EndLine className={this.props.hasComment?"hidden":""}/>
 	            </CommentList>
 	            <InputGroup />
             </CommentWrapper>
@@ -49,17 +56,18 @@ class Comment extends React.Component{
 const mapStateToProps = (state)=>({
     commentlist: state.get('blogdetail').get('commentlist'),
     page: state.get('blogdetail').get('commentPage'),
+    hasComment: state.get('blogdetail').get('hasComment'),
 })
 
 const mapStateToDispatch = (dispatch) =>({
-    getCommentlist: ()=>{
-    	const action = actionCreators.getCommentAction();
+    getCommentlist: (blogid)=>{
+    	const action = actionCreators.getCommentAction(blogid);
     	dispatch(action);
     },
-    loadmore: (page)=>{
-        const action = actionCreators.getMoreCommentAction(page);
+    loadmore: (page,blogid)=>{
+        const action = actionCreators.getMoreCommentAction(page,blogid);
         dispatch(action);
     }
 }) 
 
-export default connect(mapStateToProps,mapStateToDispatch)(Comment);
+export default connect(mapStateToProps,mapStateToDispatch)(withRouter(Comment));

@@ -46,6 +46,7 @@ export const Title = styled.div`
 export const Desc = styled.div`
     color: #ddd;
     font-size: 13px;
+    line-height: 1em;
     padding-left: 15px;
 ` 
 

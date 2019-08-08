@@ -110,7 +110,7 @@ export const Wrapper = styled.div`
 `
 
 export const EditorWrapper = styled.div`
-    height:600px;
+    height:900px;
     width: 100%;
 `
 export const Button = styled.button`
@@ -133,4 +133,25 @@ export const BackButton = styled(Button)`
         content:"<<";
     }
 `
-
+export const CommentItem = styled.div`
+    margin-bottom: 20px;
+`
+export const CommentHead = styled.div`
+    background:#DCF0FF;
+    overflow: auto;
+`
+export const CommentMain = styled.div`
+    &:after{
+        content:"";
+        clear: both;
+        display: block;
+    }
+    border-bottom: 0.5px solid #BFBFBF;
+`
+export const Comment = styled.div`
+    padding-top:10px;
+    font-size:12px;
+`
+export const Del = styled(Delete)`
+    float: right;
+`

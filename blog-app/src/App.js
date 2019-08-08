@@ -12,6 +12,7 @@ import Login from './admin/components/login';
 import TagManager from './admin/components/tagmanager';
 import PhotosManager from './admin/components/photosmanager';
 import EditPage from './admin/components/editorpage';
+import CommentsManager from './admin/components/commentmanager';
 import 'antd/dist/antd.css';
 import Prism from 'prismjs';
 
@@ -32,6 +33,7 @@ class App extends React.Component {
               <Route path="/tagmanager" exact component={TagManager} />
               <Route path="/photosmanager" exact component={PhotosManager} /> 
               <Route path="/edit/:id" exact component={EditPage} />
+              <Route path="/commentmanager" exact component={CommentsManager} />
           </BrowserRouter>
       </Provider>
       <GlobalStyle />

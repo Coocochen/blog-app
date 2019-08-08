@@ -49,13 +49,10 @@ class HeadAside extends React.Component{
                             <Link to="/photos" style={{textDecoration:"none"}}>
 							    <NavItem>相册</NavItem>
 							</Link>
-							<Link to="/about" style={{textDecoration:"none"}}>
-							    <NavItem>关于</NavItem>
-							</Link>
 							{this.props.taglist.map((item,index)=>(
-                                <Link to={"/tag/"+item} key={item} style={{textDecoration:"none"}}>
-							        <NavItem>{item}</NavItem>
-							    </Link>
+                                <a href={"/tag/"+item.get('id')} key={item.get('id')} style={{textDecoration:"none"}}>
+							        <NavItem>{item.get('tag')}</NavItem>
+							    </a>
 							   )
                             )}
 						</Nav>
@@ -84,7 +81,7 @@ class HeadAside extends React.Component{
 				      </Iconlist>
 				      <Tag>
 				          <p>©2019年</p>
-	                <p>陈峘的个人博客</p>
+	                <a href="http://beian.miitbeian.gov.cn" style={{color:'black',textDecoration:'none'}}>渝ICP备19010413号</a>
 				      </Tag>
 				  </FootAside>
 		  </HeadWrapper> 

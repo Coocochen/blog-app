@@ -11,7 +11,6 @@ import {
 } from '../style';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
-import EditBlog from './editBlog';
 import { Popconfirm} from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -25,35 +24,30 @@ class BlogListManager extends React.Component{
 	}
 
 	render(){
-			if(!this.props.edited){
-			    return(
-			        <BlogListWrapper>
-		           	     {this.props.titlelist.map((item,index)=>(
-		           	     	<BlogItem key={item.get('Id')}>
-		                        <Title>{item.get('title')}</Title>
-		                        <Time>{item.get('time')}</Time>
-		           	            <RightItem>
-					           	    <a href={'/edit/'+ item.get('Id')} style={{textDecoration: 'none'}}><Edit>编辑</Edit></a>
-					           	    <Delete>
-					           	    <Popconfirm
-									    title="确定要删除这篇博客吗？"
-									    onConfirm={()=>this.confirm(item.get('Id'))}
-									    okText="Yes"
-									    cancelText="No"
-									  >
-					           	        删除
-					           	    </Popconfirm>
-					           	    </Delete>
-		           	            </RightItem>
-		           	        </BlogItem> 
-		                  ))}
-		           	     <Link to="/edit/-1"><Button>添加博客</Button></Link>
-                    </BlogListWrapper>	
-			    );
-			}
-			else{
-                return <EditBlog/>
-			}
+	    return(
+	        <BlogListWrapper>
+           	     {this.props.titlelist.map((item,index)=>(
+           	     	<BlogItem key={item.get('Id')}>
+                        <Title>{item.get('title')}</Title>
+                        <Time>{item.get('time')}</Time>
+           	            <RightItem>
+			           	    <a href={'/edit/'+ item.get('Id')} style={{textDecoration: 'none'}}><Edit>编辑</Edit></a>
+			           	    <Delete>
+			           	    <Popconfirm
+							    title="确定要删除这篇博客吗？"
+							    onConfirm={()=>this.confirm(item.get('Id'))}
+							    okText="Yes"
+							    cancelText="No"
+							  >
+			           	        删除
+			           	    </Popconfirm>
+			           	    </Delete>
+           	            </RightItem>
+           	        </BlogItem> 
+                  ))}
+           	     <Link to="/edit/-1"><Button>添加博客</Button></Link>
+            </BlogListWrapper>	
+	    );
 	}
 }
 

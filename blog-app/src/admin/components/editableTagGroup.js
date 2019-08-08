@@ -13,6 +13,7 @@ class EditableTagGroup extends React.Component {
   handleClose = removedTag => {
     //const tags = this.props.tags.filter(tag => tag !== removedTag);
     // this.setState({ tags });
+    this.props.removeTag(removedTag);
   };
 
   showInput = () => {
@@ -24,13 +25,6 @@ class EditableTagGroup extends React.Component {
   };
 
   handleInputConfirm = () => {
-    // if (inputValue && tags.indexOf(inputValue) === -1) {
-    //   tags = [...tags, inputValue];
-    // }
-    // this.setState({
-    //   inputVisible: false,
-    //   inputValue: '',
-    // });
       this.props.addInputTag(this.props.inputValue);
 
   };
@@ -121,6 +115,10 @@ const mapDispatchToProps = (dispatch) =>({
   },
   addInputTag: (inputValue) => {
     const action = actionCreators.addInputTagAction(inputValue);
+    dispatch(action);
+  },
+  removeTag: (removedTag) => {
+    const action = actionCreators.removeTagAction(removedTag);
     dispatch(action);
   }
 })

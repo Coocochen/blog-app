@@ -11,6 +11,7 @@ import Comment from './components/comment';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
 import HeadAside from '../../common/header';
+import { BackTop } from 'antd';
 
 class Blogdetail extends React.Component{
 
@@ -33,6 +34,9 @@ class Blogdetail extends React.Component{
                   <Comment />
                 </BlogWrapper>
               </Wrapper> 
+              <div>
+                <BackTop />
+              </div>
             </React.Fragment>   
         );
 	}

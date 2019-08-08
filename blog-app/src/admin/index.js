@@ -1,13 +1,13 @@
 import React from 'react';
-// import Login from './components/login';
 import { connect } from 'react-redux';
 import SideLayout from './components/layout';
+import { Redirect } from 'react-router-dom';
 
 class Admin extends React.Component{
 	render(){
-		// if(!this.props.login){
-		// 	return <Redirect to='/login' />
-		// }
+		if(!this.props.login){
+			return <Redirect to='/login' />
+		}
 		return (
 			<SideLayout />
 		);

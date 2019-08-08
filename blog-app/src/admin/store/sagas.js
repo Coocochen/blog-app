@@ -5,9 +5,8 @@ import * as actionCreators from './actionCreator';
 import { message } from 'antd';
 function* axiosChangeLogin(action){
     try{
-        const res =  yield axios.get('/test/login.json',{admin:action.admin,password:action.password});
-        console.log(res.data);
-        const newaction = actionCreators.changeLogin(res.data.login);
+        const res =  yield axios.post('/admin/test/login',{admin:action.admin,password:action.password});
+        const newaction = actionCreators.changeLogin(res.data);
         yield put(newaction);
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
@@ -95,11 +94,8 @@ function* axiosDeleteBlog(action){
         const res = yield axios.get('/test/deleteBlog',{params:{id: action.id}});
         console.log(res.data);
         if(res.data==="success"){
-             message.success('删除成功');
              const newaction = actionCreators.deleteBlogInList(action.id); //将博客从标题列表中删除
              yield put(newaction);
-        }else{
-            message.success('删除失败');
         }
 
     }catch(e){
@@ -130,14 +126,105 @@ function* addInputTagSaga(){
     yield takeEvery(constants.ADD_INPUT_TAG, axiosAddInputTag);
 }
 
+function* axiosRemoveTag(action){
+    try{
+        const res = yield axios.post('/tag/test/removeTag',{removedTag:action.removedTag});
+        if(res.data==="success"){
+            message.success('删除成功');
+            const newaction = actionCreators.removeTagInList(action.removedTag);
+            yield put(newaction); 
+        }else{
+            message.error("删除失败");
+        }
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    }
+}
+
+function* removetagSaga(){
+    yield takeEvery(constants.REMOVE_TAG, axiosRemoveTag);
+}
+
+function* axiosLoadPhotos(){
+    try{
+        const res = yield axios.get('/photos/test/photolist');
+        const photolist = res.data.map((item)=>({url: item.imgurl, uid: item.id}));
+        const action = actionCreators.initPhotosGroup(photolist);
+        yield put(action);
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    }
+
+}
+
+function* loadPhotosSaga(){
+    yield takeEvery(constants.LOAD_PHOTOS, axiosLoadPhotos);
+}
+
+function* axiosRemovePhoto(action){
+    try{
+        const res = yield axios.post('/photos/test/removephoto',{id:action.id});
+        if(res.data==="success"){
+            message.success('删除成功');
+        }else{
+            message.error("删除失败");
+        }
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    } 
+}
+
+function* removePhotoSaga(){
+    yield takeEvery(constants.REMOVE_PHOTO, axiosRemovePhoto);
+}
+
+function* axiosLoadCommentList(){
+    try{
+        const res = yield axios.get('/comment/test/showallcomment');
+        console.log(res.data);
+        const action = actionCreators.initCommentList(res.data);
+        yield put(action);
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    } 
+}
+
+function* loadCommentListSaga(){
+    yield takeEvery(constants.LOAD_COMMENT_LIST, axiosLoadCommentList);
+}
+
+function* axiosDeleteComment(action){
+    try{
+        const res = yield axios.get('/comment/test/deletecomment',{params:{id: action.id}});
+        if(res.data==="success"){
+             message.success('删除成功');
+             const newaction = actionCreators.deleteCommentInList(action.id); //将评论从列表中删除
+             yield put(newaction);
+        }else{
+            message.success('删除失败');
+        }
+
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    }
+}
+
+function* deleteCommentById(){
+    yield takeEvery(constants.DELETE_COMMENT_BY_ID, axiosDeleteComment);
+}
 function* adminSaga(){
    yield fork(changeLoginSaga);
    yield fork(initTitlelistSaga);
-   yield fork(initTagGroupSaga);
+   yield fork(loadCommentListSaga);
    yield fork(postBlogSaga);
-   yield fork(loadDefaultBlogSaga);
    yield fork(deleteBlogSaga);
    yield fork(addInputTagSaga);
+   yield fork(removetagSaga);
+   yield fork(initTagGroupSaga);
+   yield fork(loadDefaultBlogSaga);
+   yield fork(loadPhotosSaga);
+   yield fork(removePhotoSaga);
+   yield fork(deleteCommentById);
 }
 
 export default adminSaga;

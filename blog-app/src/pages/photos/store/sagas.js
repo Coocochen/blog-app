@@ -9,8 +9,8 @@ import {
 
 function* axiosLoadPhotos(){
 	try{
-        const res = yield axios.get('/test/photos.json');
-		const action = initPhotos(res.data.picturelist);
+        const res = yield axios.get('/photos/test/photolist');
+		const action = initPhotos(res.data);
 		yield put(action);
 	}catch(e){
         console.log('接口请求失败，错误信息：', e.message);

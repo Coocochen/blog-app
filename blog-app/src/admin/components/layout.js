@@ -9,7 +9,7 @@ import BlogManager from './blogmanager';
 
 const { Header, Sider, Content } = Layout;
 
-class SideLayout extends React.Component {
+class SideLayout extends React.PureComponent {
   state = {
     collapsed: false,
   };

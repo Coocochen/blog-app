@@ -12,7 +12,7 @@ import {
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-class Login extends React.Component{
+class Login extends React.PureComponent{
 	render(){
 			if(!this.props.login){
                 return (

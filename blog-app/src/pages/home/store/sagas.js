@@ -3,7 +3,8 @@ import axios from 'axios';
 import { 
     getBlogListAction,
     loadMoreBlog,
-    changeHasBlogToFalse
+    changeHasBlogToFalse,
+    setActionRefreshed
  } from './actionCreator';
 import { 
     LOAD_BLOGLIST,
@@ -19,6 +20,8 @@ function* axiosBlogList(action) {
         }
 	    const newaction = getBlogListAction(res.data);
         yield put(newaction); // 相当于store.dispatch
+        const refreshAction = setActionRefreshed();
+        yield put(refreshAction);
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
     }

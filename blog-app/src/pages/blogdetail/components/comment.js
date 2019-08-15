@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 import { withRouter} from 'react-router-dom';
 
-class Comment extends React.Component{
+class Comment extends React.PureComponent{
  
     componentDidMount(){
     	this.props.getCommentlist(this.props.match.params.id);

@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
-class EditableTagGroup extends React.Component {
+class EditableTagGroup extends React.PureComponent {
   
   componentDidMount(){
     this.props.loadTagGoup();

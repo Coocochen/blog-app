@@ -4,3 +4,6 @@ export const INIT_BLOG_LIST = 'init_blog_list';
 export const GET_MORE_BLOG = 'get_more_blog';
 export const LOAD_MORE_BLOG = 'load_more_blog';
 export const NO_BLOG_LEFT = 'no_blog_left';
+export const SET_ACTION_ACTION = 'set_action_action';
+export const SET_ACTION_REFRESHING = 'set_action_refreshing';
+export const SET_ACTION_REFRESHED = 'set_aciton_refreshed';

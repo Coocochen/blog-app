@@ -11,7 +11,7 @@ import { Popconfirm} from 'antd';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
 
-class EditComment extends React.Component{
+class EditComment extends React.PureComponent{
     
     componentDidMount(){
     	this.props.loadCommentlist();

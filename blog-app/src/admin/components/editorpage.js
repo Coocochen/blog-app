@@ -7,7 +7,7 @@ import {
 } from '../style';
 
 const { Header, Sider, Content } = Layout;
-class EditPage extends React.Component{
+class EditPage extends React.PureComponent{
   state = {
     collapsed: false,
   };

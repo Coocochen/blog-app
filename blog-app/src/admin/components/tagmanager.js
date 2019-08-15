@@ -10,7 +10,7 @@ import EditableTagGroup from './editableTagGroup';
 
 const { Header, Sider, Content } = Layout;
 
-class TagManager extends React.Component {
+class TagManager extends React.PureComponent {
   state = {
     collapsed: false,
   };

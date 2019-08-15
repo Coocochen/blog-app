@@ -12,8 +12,9 @@ import { connect } from 'react-redux';
 import { actionCreators } from './store';
 import HeadAside from '../../common/header';
 import { BackTop } from 'antd';
+import { withRouter} from 'react-router-dom';
 
-class Blogdetail extends React.Component{
+class Blogdetail extends React.PureComponent{
 
   componentDidMount(){
     this.props.loadBlogsingle(this.props.match.params.id);
@@ -53,4 +54,4 @@ const mapDispatchToProps = (dispatch) =>({
     }
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Blogdetail);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Blogdetail));

@@ -5,6 +5,7 @@
         "plugins": ["line-numbers"],
         "theme": "twilight",
         "css": true
-    }]
+    }],
+    ["import", { "libraryName": "antd", "style": "css" }] 
   ]
 }

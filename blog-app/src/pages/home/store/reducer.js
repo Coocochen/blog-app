@@ -1,29 +1,40 @@
 import { fromJS } from 'immutable';
-import { 
-	INIT_BLOG_LIST,
-	LOAD_MORE_BLOG,
-    NO_BLOG_LEFT
-} from './constants';
+import * as constants from './constants';
+import { STATS } from "react-pullload";
+
 const defaultState = fromJS({ 
 	bloglist:[],
 	page: 1,
 	hasBlog: true,
+	action: STATS.init,
 });
 
 export default (state = defaultState,action)=>{
    switch(action.type){
-   	case INIT_BLOG_LIST:
+   	case constants.INIT_BLOG_LIST:
    	  return state.merge({
    	  		bloglist: fromJS(action.bloglist),
    	  });
-	case LOAD_MORE_BLOG:
+	case constants.LOAD_MORE_BLOG:
 		return state.merge({
 			bloglist:fromJS(state.get('bloglist').concat(action.data)),
 			page: fromJS(action.nextpage),
 		})
-	case NO_BLOG_LEFT:
+	case constants.NO_BLOG_LEFT:
 	    return state.merge({
 	    	hasBlog: false,
+	    })
+	case constants.SET_ACTION_ACTION:
+	    return state.merge({
+	    	action: fromJS(action.raction),
+	    })
+	case constants.SET_ACTION_REFRESHING:
+	    return state.merge({
+	    	action: STATS.refreshing
+	    })
+	case constants.SET_ACTION_REFRESHED:
+	    return state.merge({
+	    	action:STATS.refreshed
 	    })
     default:
       return state;

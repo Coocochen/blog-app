@@ -14,7 +14,7 @@ import HeadAside from '../../common/header';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
 
-class Photos extends React.Component{
+class Photos extends React.PureComponent{
     
     componentDidMount(){
     	this.props.loadPhotos();

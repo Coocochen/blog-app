@@ -17,7 +17,7 @@ import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store';
 import { Link } from 'react-router-dom';
 
-class HeadAside extends React.Component{   
+class HeadAside extends React.PureComponent{   
 
     componentDidMount(){
     	this.props.loadTags();

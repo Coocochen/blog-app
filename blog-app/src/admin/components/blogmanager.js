@@ -14,7 +14,7 @@ import { actionCreators } from '../store';
 import { Popconfirm} from 'antd';
 import { Link } from 'react-router-dom';
 
-class BlogListManager extends React.Component{
+class BlogListManager extends React.PureComponent{
     
     componentDidMount(){
         this.props.loadTitlelist();

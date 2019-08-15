@@ -3,21 +3,16 @@ import { GlobalStyle } from './style';
 import store from './store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
-import BlogList from './pages/home';
-import BlogDetail from './pages/blogdetail';
-import Photos from './pages/photos';
-import About from './pages/about';
-import Admin from './admin';
+import BlogList from './pages/home/loadable.js';
+import BlogDetail from './pages/blogdetail/loadable.js';
+import Photos from './pages/photos/loadable.js';
+import Admin from './admin/loadable.js';
 import Login from './admin/components/login';
 import TagManager from './admin/components/tagmanager';
 import PhotosManager from './admin/components/photosmanager';
 import EditPage from './admin/components/editorpage';
 import CommentsManager from './admin/components/commentmanager';
-import 'antd/dist/antd.css';
-import Prism from 'prismjs';
-
-Prism.highlightAll();
-class App extends React.Component {
+class App extends React.PureComponent {
   render(){
     return (
     <React.Fragment>
@@ -27,7 +22,6 @@ class App extends React.Component {
               <Route path="/tag/:id" exact component={BlogList}/>
              	<Route path="/blogdetail/:id" exact component={BlogDetail}/>
              	<Route path="/photos" exact component={Photos}/>
-              <Route path="/about" exact component={About} />
               <Route path="/admin" exact component={Admin} />
               <Route path="/login" exact component={Login} />
               <Route path="/tagmanager" exact component={TagManager} />

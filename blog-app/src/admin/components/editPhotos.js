@@ -15,7 +15,7 @@ function getBase64(file) {
   });
 }
 
-class EditPhotos extends React.Component{
+class EditPhotos extends React.PureComponent{
 
   componentDidMount(){
   	this.props.loadPhotos();

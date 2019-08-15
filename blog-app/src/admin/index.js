@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SideLayout from './components/layout';
 import { Redirect } from 'react-router-dom';
 
-class Admin extends React.Component{
+class Admin extends React.PureComponent{
 	render(){
 		if(!this.props.login){
 			return <Redirect to='/login' />

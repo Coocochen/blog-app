@@ -14,7 +14,7 @@ import { actionCreators } from '../store';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 
-class EditBlog extends React.Component{
+class EditBlog extends React.PureComponent{
 
     handleTitleChange(e){
         this.props.changeBlogTitle(e.target.value);

@@ -9,7 +9,7 @@ import EditComment from './editcomment';
 
 const { Header, Sider, Content } = Layout;
 
-class CommentsManager extends React.Component {
+class CommentsManager extends React.PureComponent {
   state = {
     collapsed: false,
   };

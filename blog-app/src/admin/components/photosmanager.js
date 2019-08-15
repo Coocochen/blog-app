@@ -9,7 +9,7 @@ import EditPhotos from './editPhotos';
 
 const { Header, Sider, Content } = Layout;
 
-class PhotosManager extends React.Component {
+class PhotosManager extends React.PureComponent {
   state = {
     collapsed: false,
   };

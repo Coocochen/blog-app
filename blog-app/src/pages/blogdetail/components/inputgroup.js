@@ -10,7 +10,7 @@ import { actionCreators } from '../store';
 import { withRouter} from 'react-router-dom';
 import { Button } from 'antd';
 
-class InputGroup extends React.Component{
+class InputGroup extends React.PureComponent{
    render(){
    	   const {posting, inputName, inputMail, inputComment } =this.props;
    	   return (

@@ -39,7 +39,7 @@ class BlogList extends React.PureComponent{
 			                	</ImgWrapper>
 			                	<Time>{item.get('time')}</Time> 
 			                    <Title>{item.get('title')}</Title>
-			                    <Content >{item.get('content').replace(/<\/?.+?\/?>|&lt;\/?|&gt;\/?|&nbsp/g,'').substring(0,200)}</Content><span>...</span>
+			                    <Content>{item.get('content').replace(/<\/?.+?\/?>|&lt;\/?|&gt;\/?|&nbsp/g,'').substring(0,200)}</Content><span>...</span>
 		                    </ListItem>
 		                    </Link>
 					    ))}

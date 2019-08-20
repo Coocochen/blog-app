@@ -6,9 +6,9 @@ import { reducer as photosReducer } from '../pages/photos/store';
 import { reducer as adminReducer } from '../admin/store';
 
 export default combineReducers({
-	header: headerReducer,
-	blog: bloglistReducer,
-	blogdetail: blogdetailReducer,
-	photos: photosReducer,
-	admin: adminReducer,
+    header: headerReducer,
+    blog: bloglistReducer,
+    blogdetail: blogdetailReducer,
+    photos: photosReducer,
+    admin: adminReducer,
 })

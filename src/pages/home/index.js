@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  ListItem,
-  List,
-  Time,
-  ListWrapper,
-  Title,
-  Content,
-  ImgWrapper,
-  LoadMore,
-  EndLine
+    ListItem,
+    List,
+    Time,
+    ListWrapper,
+    Title,
+    Content,
+    ImgWrapper,
+    LoadMore,
+    EndLine
 } from './style';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
@@ -28,9 +28,8 @@ class BlogList extends React.PureComponent{
                 <List>
                     {this.props.bloglist.map((item,index)=>(
                         <Link 
-                        to={'/blogdetail/' + item.get('Id')}
-                        key={item.get('Id')}
-                        style={{textDecoration: 'none'}}
+                            to={'/blogdetail/' + item.get('Id')}
+                            key={item.get('Id')}
                         >
                             <ListItem>
                                 <ImgWrapper>
@@ -62,26 +61,26 @@ class BlogList extends React.PureComponent{
 }
 
 const mapStateToProps=(state) => ({
-  bloglist: state.get('blog').get('bloglist'),
-  page: state.get('blog').get('page'),
-  hasBlog: state.get('blog').get('hasBlog'),
-  action: state.get('blog').get('action'),
-  loadMoreEvent: state.get('blog').get('loadMoreEvent')
+    bloglist: state.get('blog').get('bloglist'),
+    page: state.get('blog').get('page'),
+    hasBlog: state.get('blog').get('hasBlog'),
+    action: state.get('blog').get('action'),
+    loadMoreEvent: state.get('blog').get('loadMoreEvent')
 })
 
 const mapDispatchToProps = (dispatch) =>({
-  loadBloglist: (id) => {
-    dispatch(actionCreators.loadBloglist(id));
-  },
-  loadmore: (page,id)=>{
-    const action = actionCreators.getMoreBlogAction(page,id);
-    dispatch(action);
-    dispatch(actionCreators.bandonLoadMore());
-  },
-  setActionaction: (raction) => {
-    const action = actionCreators.setActionaction(raction);
-    dispatch(action);
-  }
+    loadBloglist: (id) => {
+        dispatch(actionCreators.loadBloglist(id));
+    },
+    loadmore: (page,id)=>{
+        const action = actionCreators.getMoreBlogAction(page,id);
+        dispatch(action);
+        dispatch(actionCreators.bandonLoadMore());
+    },
+    setActionaction: (raction) => {
+        const action = actionCreators.setActionaction(raction);
+        dispatch(action);
+    }
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(BlogList));

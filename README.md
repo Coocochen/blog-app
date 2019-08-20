@@ -2,9 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ![coocochen](http://coocochen.com/coocochen.png)
 
-使用create-react-app为框架的博客app
 
-##技术栈
+# 使用create-react-app为框架的博客app
+
+
+## 技术栈
 
 * react
 * react-redux

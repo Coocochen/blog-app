@@ -3,9 +3,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ![coocochen](http://coocochen.com/coocochen.png)
 ## react-blog-app
 
-使用需要修改文件夹名称为blog-app
 
-###技术栈
+##技术栈
 
 * react
 * react-redux

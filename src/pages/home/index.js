@@ -18,49 +18,47 @@ import { withRouter} from 'react-router-dom';
 
 class BlogList extends React.PureComponent{
   
-  componentDidMount(){
-    this.props.loadBloglist(this.props.match.params.id);
-  } 
+    componentDidMount(){
+        this.props.loadBloglist(this.props.match.params.id);
+    } 
 
-  render(){
-    return (
-      <React.Fragment>
-        <ListWrapper>
-          <List>
-            {this.props.bloglist.map((item,index)=>(
-            <Link 
-              to={'/blogdetail/' + item.get('Id')}
-              key={item.get('Id')}
-              style={{textDecoration: 'none'}}
-            >
-              <ListItem>
-                <ImgWrapper>
-                  <img src= {item.get('imgurl')} alt='img' />
-                </ImgWrapper>
-                <Time>{item.get('time')}</Time> 
-                <Title>{item.get('title')}</Title>
-                <Content>{item.get('content').replace(/<\/?.+?\/?>|&lt;\/?|&gt;\/?|&nbsp/g,'').substring(0,200)}</Content><span>...</span>
-              </ListItem>
-            </Link>
-            ))}
-            <LoadMore  
-              className={this.props.hasBlog?"iconfont":"iconfont hidden"} 
-              onClick={
-              this.props.loadMoreEvent? 
-              () => this.props.loadmore(this.props.page,this.props.match.params.id):
-              {}
-            }>
-            &#xe61e;
-            </LoadMore>
-            <EndLine className={this.props.hasBlog?"hidden":""}/> 
-          </List>
-          <div>
-            <BackTop />
-          </div>
-        </ListWrapper>
-      </React.Fragment>
-    );
-  }
+    render(){
+        return (
+            <ListWrapper>
+                <List>
+                    {this.props.bloglist.map((item,index)=>(
+                        <Link 
+                        to={'/blogdetail/' + item.get('Id')}
+                        key={item.get('Id')}
+                        style={{textDecoration: 'none'}}
+                        >
+                            <ListItem>
+                                <ImgWrapper>
+                                    <img src= {item.get('imgurl')} alt='img' />
+                                </ImgWrapper>
+                                <Time>{item.get('time')}</Time> 
+                                <Title>{item.get('title')}</Title>
+                                <Content>{item.get('content').replace(/<\/?.+?\/?>|&lt;\/?|&gt;\/?|&nbsp/g,'').substring(0,200)}</Content><span>...</span>
+                            </ListItem>
+                        </Link>
+                    ))}
+                    <LoadMore  
+                        className={this.props.hasBlog?"iconfont":"iconfont hidden"} 
+                        onClick={
+                        this.props.loadMoreEvent? 
+                        () => this.props.loadmore(this.props.page,this.props.match.params.id):
+                        {}
+                    }>
+                    &#xe61e;
+                    </LoadMore>
+                    <EndLine className={this.props.hasBlog?"hidden":""}/> 
+                </List>
+                <div>
+                    <BackTop />
+                </div>
+            </ListWrapper>
+        );
+    }
 }
 
 const mapStateToProps=(state) => ({

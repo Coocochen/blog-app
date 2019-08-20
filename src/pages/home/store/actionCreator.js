@@ -6,8 +6,8 @@ export const loadBloglist = (id)=>({
 })
 
 export const getBlogListAction = (data)=>({
-	type: constants.INIT_BLOG_LIST,
-	bloglist: data,
+    type: constants.INIT_BLOG_LIST,
+    bloglist: data,
 })
 
 export const getMoreBlogAction = (page,id) =>({
@@ -17,20 +17,20 @@ export const getMoreBlogAction = (page,id) =>({
 })
 
 export const loadMoreBlog = (data,nextpage) =>({
-	type: constants.LOAD_MORE_BLOG,
-	data:fromJS(data),
-	nextpage,
+    type: constants.LOAD_MORE_BLOG,
+    data:fromJS(data),
+    nextpage,
 })
 
 export const changeHasBlogToFalse = ()=>({
-	type: constants.NO_BLOG_LEFT,
+    type: constants.NO_BLOG_LEFT,
 })
 
 export const setActionaction = (raction) => ({
-	type: constants.SET_ACTION_ACTION,
-	raction,
+    type: constants.SET_ACTION_ACTION,
+    raction,
 })
 
 export const bandonLoadMore = () => ({
-	type: constants.BANDON_LOAD_MORE
+    type: constants.BANDON_LOAD_MORE
 })

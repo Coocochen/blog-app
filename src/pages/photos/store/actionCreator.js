@@ -1,6 +1,6 @@
 import {
-	LOAD_PHOTOS,
-	INIT_PHOTOS
+    LOAD_PHOTOS,
+    INIT_PHOTOS
 } from './constants';
 
 export const loadPhotosAction = ()=>({

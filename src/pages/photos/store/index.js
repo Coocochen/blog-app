@@ -3,7 +3,7 @@ import * as actionCreators from './actionCreator';
 import photosSaga from './sagas'
 
 export { 
-	reducer,
+    reducer,
     actionCreators, 
     photosSaga
 };

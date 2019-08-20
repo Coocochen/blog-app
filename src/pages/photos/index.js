@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-	PhotosWrapper,
-	ImgWrapper,
-	Caption,
-	Title,
-	Desc,
+    PhotosWrapper,
+    ImgWrapper,
+    Caption,
+    Title,
+    Desc,
 } from './style';
 import {
-	Col,
-	Row,
+    Col,
+    Row,
 } from 'antd';
 import { connect } from 'react-redux';
 import { actionCreators } from './store';
@@ -16,31 +16,31 @@ import { actionCreators } from './store';
 class Photos extends React.PureComponent{
     
     componentDidMount(){
-    	this.props.loadPhotos();
+        this.props.loadPhotos();
     }
 
-	render(){
-		return (
-			<React.Fragment>
-	            <PhotosWrapper>
-	            	<Row>
-	            	    {this.props.picturelist.map((item,index)=>(
-	                        <Col xs={{ span: 8}} lg={{ span: 4}} key={item.get('id')}>
-						    <ImgWrapper>
-						        <img src={item.get('imgurl')} alt="pic" width='100%' height='100%'/>
-						        <Caption>
-						        	<Title>{item.get('title')}</Title>
-						        	<Desc>{item.get('desc')}</Desc>
-						        </Caption>
-						    </ImgWrapper>
-						</Col>
-	            	    )
-	                    )}
-				    </Row>
-	            </PhotosWrapper>
-	        </React.Fragment>    
-		);
-	}
+    render(){
+        return (
+            <React.Fragment>
+                <PhotosWrapper>
+                    <Row>
+                        {this.props.picturelist.map((item,index)=>(
+                            <Col xs={{ span: 8}} lg={{ span: 4}} key={item.get('id')}>
+                            <ImgWrapper>
+                                <img src={item.get('imgurl')} alt="pic" width='100%' height='100%'/>
+                                <Caption>
+                                    <Title>{item.get('title')}</Title>
+                                    <Desc>{item.get('desc')}</Desc>
+                                </Caption>
+                            </ImgWrapper>
+                        </Col>
+                        )
+                        )}
+                    </Row>
+                </PhotosWrapper>
+            </React.Fragment>    
+        );
+    }
 }
 
 const mapStateToProps = (state) => ({

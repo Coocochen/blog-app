@@ -5,7 +5,7 @@ import React from 'react';
 const LoadableComponent = Loadable({
   loader: () => import('./'),
   loading: ()=>{
-  	return <Loading/>
+    return <Loading/>
   }
 });
 

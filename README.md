@@ -16,8 +16,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * styled-components
 
 
+* 加载动画使用个人封装的ui库cooco_ui_lib, 项目地址：https://github.com/Coocochen/cooco_ui_lib
 
 博客网址: http://coocochen.com
 
 后端使用express+mysql, 地址: https://github.com/Coocochen/express-mysql 
+
 

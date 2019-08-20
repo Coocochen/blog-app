@@ -27,12 +27,12 @@ class BlogList extends React.PureComponent{
         	<React.Fragment>
         	    <ListWrapper>
 					<List>
-					    {this.props.bloglist.map((item,index)=>(
-	                        <Link 
-	                            to={'/blogdetail/' + item.get('Id')}
-	                            key={item.get('Id')}
-	                            style={{textDecoration: 'none'}}
-	                         >
+					{this.props.bloglist.map((item,index)=>(
+	                    <Link 
+	                        to={'/blogdetail/' + item.get('Id')}
+	                        key={item.get('Id')}
+	                        style={{textDecoration: 'none'}}
+	                     >
 	                        <ListItem>
 	                            <ImgWrapper>
 			                	    <img src= {item.get('imgurl')} alt='img' />
@@ -41,8 +41,8 @@ class BlogList extends React.PureComponent{
 			                    <Title>{item.get('title')}</Title>
 			                    <Content>{item.get('content').replace(/<\/?.+?\/?>|&lt;\/?|&gt;\/?|&nbsp/g,'').substring(0,200)}</Content><span>...</span>
 		                    </ListItem>
-		                    </Link>
-					    ))}
+		                </Link>
+					))}
 					    <LoadMore 
 					         className={this.props.hasBlog?"iconfont":"iconfont hidden"} 
 					         onClick={
@@ -52,7 +52,7 @@ class BlogList extends React.PureComponent{
 					     }>
 					      &#xe61e;
 					    </LoadMore>
-		                <EndLine className={this.props.hasBlog?"hidden":""}/> 
+			            <EndLine className={this.props.hasBlog?"hidden":""}/> 
 		            </List>
 		            <div>
 					    <BackTop />

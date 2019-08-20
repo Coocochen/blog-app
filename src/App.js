@@ -13,22 +13,22 @@ import Login from './admin/pages/login/loadable'
 class App extends React.PureComponent {
   render(){
     return (
-    <React.Fragment>
-      <Provider store={store}>
-          <BrowserRouter>
-              <HeadAside />
-              <Switch>
-                 	<Route path="/" exact component={BlogList}/>
-                  <Route path="/tag/:id" exact component={BlogList}/>
-                 	<Route path="/blogdetail/:id" exact component={BlogDetail}/>
-                 	<Route path="/photos" exact component={Photos}/>
-                  <Route path="/admin" exact component={Admin} />
-                  <Route path="/login" exact component={Login} />
-              </Switch>
-          </BrowserRouter>
-      </Provider>
-      <GlobalStyle />
-    </React.Fragment>
+        <React.Fragment>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <HeadAside />
+                        <Switch>
+                            <Route path="/" exact component={BlogList}/>
+                            <Route path="/tag/:id" exact component={BlogList}/>
+                            <Route path="/blogdetail/:id" exact component={BlogDetail}/>
+                            <Route path="/photos" exact component={Photos}/>
+                            <Route path="/admin" exact component={Admin} />
+                            <Route path="/login" exact component={Login} />
+                        </Switch>
+                </BrowserRouter>
+            </Provider>
+            <GlobalStyle />
+        </React.Fragment>
   );
   }
 }

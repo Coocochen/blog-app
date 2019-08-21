@@ -28,6 +28,15 @@ export const ImgWrapper = styled.div`
     	position: absolute;
     	width: 100%;
     	height: 100%;
+        animation: fadeIn 0.5s;
+
+        @keyframes fadeIn{
+            from{
+                opacity: 0;
+            }to{
+                opacity: 1;
+            }
+        }
     }
 `
 

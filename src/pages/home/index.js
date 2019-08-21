@@ -16,11 +16,34 @@ import { Link } from 'react-router-dom';
 import { BackTop } from 'antd';
 import { withRouter} from 'react-router-dom';
 
+const threshold = [0.1];
+const intersectionObserver = new IntersectionObserver((entries) => {   //图片懒加载
+        entries.forEach((item) => {
+            if(item.isIntersecting){
+                item.target.src = item.target.dataset.src;
+                intersectionObserver.unobserve(item.target);
+            }
+         })
+     },{
+        threshold
+      });
+
 class BlogList extends React.PureComponent{
+    constructor(props){
+        super(props);
+        this.images = [];
+    }
   
     componentDidMount(){
         this.props.loadBloglist(this.props.match.params.id);
     } 
+
+    componentDidUpdate(){
+        console.log(this.images);
+        this.images.forEach((item) => {
+            intersectionObserver.observe(item);
+        });
+    }
 
     render(){
         return (
@@ -33,7 +56,7 @@ class BlogList extends React.PureComponent{
                         >
                             <ListItem>
                                 <ImgWrapper>
-                                    <img src= {item.get('imgurl')} alt='img' />
+                                    <img ref={ ref => this.images[index] = ref } data-src= {item.get('imgurl')} alt='img' src="" />
                                 </ImgWrapper>
                                 <Time>{item.get('time')}</Time> 
                                 <Title>{item.get('title')}</Title>
@@ -46,7 +69,7 @@ class BlogList extends React.PureComponent{
                         onClick={
                         this.props.loadMoreEvent? 
                         () => this.props.loadmore(this.props.page,this.props.match.params.id):
-                        {}
+                        () => {console.log("")}
                     }>
                     &#xe61e;
                     </LoadMore>

@@ -24,6 +24,15 @@ export const ImgWrapper = styled.div`
     		min-height: 135%;   
             padding-bottom: 35%;
     	}
+        animation: fadeIn 0.5s;
+
+        @keyframes fadeIn{
+            from{
+                opacity: 0;
+            }to{
+                opacity: 1;
+            }
+        }
     }
 `
 

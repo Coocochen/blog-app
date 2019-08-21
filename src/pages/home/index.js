@@ -87,7 +87,6 @@ const mapStateToProps=(state) => ({
     bloglist: state.get('blog').get('bloglist'),
     page: state.get('blog').get('page'),
     hasBlog: state.get('blog').get('hasBlog'),
-    action: state.get('blog').get('action'),
     loadMoreEvent: state.get('blog').get('loadMoreEvent')
 })
 
@@ -99,10 +98,6 @@ const mapDispatchToProps = (dispatch) =>({
         const action = actionCreators.getMoreBlogAction(page,id);
         dispatch(action);
         dispatch(actionCreators.bandonLoadMore());
-    },
-    setActionaction: (raction) => {
-        const action = actionCreators.setActionaction(raction);
-        dispatch(action);
     }
 })
 

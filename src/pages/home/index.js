@@ -15,6 +15,7 @@ import { actionCreators } from './store';
 import { Link } from 'react-router-dom';
 import { BackTop } from 'antd';
 import { withRouter} from 'react-router-dom';
+import Search from './components/search';
 
 const threshold = [0.1];
 const intersectionObserver = new IntersectionObserver((entries) => {   //图片懒加载
@@ -39,15 +40,17 @@ class BlogList extends React.PureComponent{
     } 
 
     componentDidUpdate(){
-        console.log(this.images);
         this.images.forEach((item) => {
-            intersectionObserver.observe(item);
+            if(item){
+                intersectionObserver.observe(item);
+            }
         });
     }
 
     render(){
         return (
             <ListWrapper>
+                <Search/>
                 <List>
                     {this.props.bloglist.map((item,index)=>(
                         <Link 

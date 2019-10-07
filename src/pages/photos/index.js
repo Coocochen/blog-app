@@ -26,14 +26,14 @@ class Photos extends React.PureComponent{
                     <Row>
                         {this.props.picturelist.map((item,index)=>(
                             <Col xs={{ span: 8}} lg={{ span: 4}} key={item.get('id')}>
-                            <ImgWrapper>
-                                <img src={item.get('imgurl')} alt="pic" width='100%' height='100%'/>
-                                <Caption>
-                                    <Title>{item.get('title')}</Title>
-                                    <Desc>{item.get('desc')}</Desc>
-                                </Caption>
-                            </ImgWrapper>
-                        </Col>
+                                <ImgWrapper>
+                                    <img src={item.get('imgurl')} alt="pic" width='100%' height='100%'/>
+                                    <Caption>
+                                        <Title>{item.get('title')}</Title>
+                                        <Desc>{item.get('desc')}</Desc>
+                                    </Caption>
+                                </ImgWrapper>
+                            </Col>
                         )
                         )}
                     </Row>

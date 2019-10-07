@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
     margin-left: 200px;
-    padding: 40px 0;
+    padding-bottom: 40px;
     @media (max-width:992px){
     	margin-left: 0;
     	padding: 40px 20px;
@@ -99,4 +99,99 @@ export const EndLine = styled.div`
     &.hidden{
         display:none;
     }
+`
+
+export const SearchWrapper = styled.div`
+    float: right;
+    width: 60px;
+    height: 60px;
+    background-color: #eaeaea;
+    margin: 20px 40px 10px 0;
+    padding-top: 10px;
+    cursor: pointer;
+    position: relative;
+    @media (max-width:992px){
+       margin: 0px;
+    }
+    input{
+        position: absolute;
+        bottom: 10px;
+        width: 0px;
+        border: none;
+        outline: none;
+        background-color: #eaeaea;
+        margin-left: 10px;
+        &.show{
+            width: 220px;
+            height: 30px;
+            border-bottom: 1px solid;
+        }
+        &.inputslide-enter{
+            transition: all .5s;
+        }
+        &.inputslide-enter-active{
+            width: 220px;
+        }
+        &.inputslide-exit{
+            transition: all .5s;
+        }
+        &.inputslide-exit-active{
+            width: 0px;
+        }
+    }
+    &.mouseover{
+        width: 300px;
+    }
+    &.searchslide-enter{
+        transition: all .5s;
+    }
+    &.searchslide-enter-active{
+        width: 300px;
+    }
+    &.searchslide-exit{
+        transition: all .5s;
+    }
+    &.searchslide-exit-active{
+        width: 60px;
+    }
+`
+
+export const ItemWrapper = styled.div`
+   position: absolute;
+   width: 220px;
+   left: 50px;
+   top: 50px;
+   background-color: white;
+   z-index: 999;
+   border: 0.8px solid gray;
+   &.hidden{
+     display: none;
+   }
+`
+
+export const HistoryItem = styled.div`
+   font-size: 12px;
+   position: relative;
+   &:hover{
+     background-color: #C0BCBC;
+   }
+   @media (max-width:992px){
+       font-size: 16px;
+    }
+`
+
+export const CloseItem = styled.span`
+   &::after{
+    content: '\u00D7';
+   }
+   display: inline-block;
+   width: 20px;
+   text-align: center;
+   z-index: 999;
+   position: absolute;
+   right: 2px;
+   &:hover{
+     background-color: gray;
+     color: white;
+   }
 `

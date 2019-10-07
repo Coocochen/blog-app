@@ -5,7 +5,12 @@ const defaultState = fromJS({
     bloglist:[],
     page: 1,
     hasBlog: true,
-    loadMoreEvent: true
+    loadMoreEvent: true,
+    ismouseover: false,
+    searchContent: '', 
+    isInputFocus: false,
+    tips: [],
+    isClickItem: false
 });
 
 export default (state = defaultState,action)=>{
@@ -32,6 +37,40 @@ export default (state = defaultState,action)=>{
         return state.merge({
             loadMoreEvent: false
         })
+    case constants.MOUSE_OVER_SEARCH:
+        return state.merge({
+            ismouseover: true
+        })
+    case constants.MOUSE_LEAVE_SEARCH:
+        return state.merge({
+            ismouseover: false,
+            isInputFocus: false
+        })
+    case constants.SEARCH_CONTENT_CHANGE:
+        return state.merge({
+            searchContent: fromJS(action.data)
+        })
+    case constants.INPUT_FOCUS:
+        return state.merge({
+            isInputFocus: true
+        })
+    case constants.HIDE_ITEM:
+         return state.merge({
+            isInputFocus: false,
+            searchContent: fromJS(action.value)
+         })
+    case constants.SET_TIPS:
+         return state.merge({
+            tips: action.data
+         })
+    case constants.CLICK_ITEM:
+         return state.merge({
+            isClickItem: true
+         })
+    case constants.CLICK_ITEM_TO_FALSE:
+         return state.merge({
+            isClickItem: false
+         })
     default:
       return state;
    }

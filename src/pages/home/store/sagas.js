@@ -8,6 +8,7 @@ import {
 import { 
     LOAD_BLOGLIST,
     GET_MORE_BLOG,
+    SEARCH_RESULT
 } from './constants';
 
 function* axiosBlogList(action) {
@@ -18,7 +19,7 @@ function* axiosBlogList(action) {
             yield put(changeHasBlogToFalse());
         }
 	    const newaction = getBlogListAction(res.data);
-        yield put(newaction); // 相当于store.dispatch
+        yield put(newaction); // 相当于store.dispatch   
     }catch(e){
         console.log('接口请求失败，错误信息：', e.message);
     }
@@ -46,9 +47,27 @@ function* loadMoreBlogSaga(){
     yield takeEvery(GET_MORE_BLOG, axiosLoadMoreBlog);
 }
 
+function* axiosLoadSearchResult(action){
+    try {
+        const res = yield axios.get('/test/showSearchContent',{params:{page: 0,searchData: action.data}});
+        if( res.data.length < 3){
+            yield put(changeHasBlogToFalse());
+        }
+        const newaction = getBlogListAction(res.data);
+        yield put(newaction); // 相当于store.dispatch   
+    }catch(e){
+        console.log('接口请求失败，错误信息：', e.message);
+    }
+}
+
+function* loadSearchResultSaga(){
+    yield takeEvery(SEARCH_RESULT, axiosLoadSearchResult);
+}
+
 function* homeSaga() {
     yield fork(loadMoreBlogSaga);
     yield fork(loadbloglistSaga);
+    yield fork(loadSearchResultSaga);
 }
 
 export default homeSaga;

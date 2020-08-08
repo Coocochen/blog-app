@@ -4,9 +4,9 @@ import React from 'react';
 
 const LoadableComponent = Loadable({
   loader: () => import('./'),
-  loading: ()=>{
-    return <Loading/>
+  loading: () => {
+    return <Loading />
   }
 });
 
-export default () => <LoadableComponent/>
+export default () => <LoadableComponent />

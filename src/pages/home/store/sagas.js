@@ -1,73 +1,73 @@
-import { takeEvery, put, fork} from 'redux-saga/effects';
+import { takeEvery, put, fork } from 'redux-saga/effects';
 import axios from 'axios';
-import { 
-    getBlogListAction,
-    loadMoreBlog,
-    changeHasBlogToFalse,
- } from './actionCreator';
-import { 
-    LOAD_BLOGLIST,
-    GET_MORE_BLOG,
-    SEARCH_RESULT
+import {
+  getBlogListAction,
+  loadMoreBlog,
+  changeHasBlogToFalse,
+} from './actionCreator';
+import {
+  LOAD_BLOGLIST,
+  GET_MORE_BLOG,
+  SEARCH_RESULT
 } from './constants';
 
 function* axiosBlogList(action) {
-    try {
-        // 正常返回之后，数据直接给res
-	    const res = yield axios.get('/test/showbloglist',{params:{page: 0,id: action.id}});
-        if( res.data.length < 3){
-            yield put(changeHasBlogToFalse());
-        }
-	    const newaction = getBlogListAction(res.data);
-        yield put(newaction); // 相当于store.dispatch   
-    }catch(e){
-        console.log('接口请求失败，错误信息：', e.message);
+  try {
+    // 正常返回之后，数据直接给res
+    const res = yield axios.get('/test/showbloglist', { params: { page: 0, id: action.id } });
+    if (res.data.length < 3) {
+      yield put(changeHasBlogToFalse());
     }
+    const newaction = getBlogListAction(res.data);
+    yield put(newaction); // 相当于store.dispatch   
+  } catch (e) {
+    console.log('接口请求失败，错误信息：', e.message);
+  }
 
 }
 
 function* loadbloglistSaga() {
-    yield takeEvery(LOAD_BLOGLIST, axiosBlogList);
+  yield takeEvery(LOAD_BLOGLIST, axiosBlogList);
 }
 
-function* axiosLoadMoreBlog(action){
-    try {   
-        const res = yield axios.get('/test/showbloglist',{params:{page: action.page,id: action.id}});
-        if( res.data.length < 3){
-            yield put(changeHasBlogToFalse());
-        }
-        const newaction = loadMoreBlog(res.data,action.page+1);     
-        yield put(newaction);
-    }catch(e){
-        console.log('接口请求失败，错误信息：', e.message);
+function* axiosLoadMoreBlog(action) {
+  try {
+    const res = yield axios.get('/test/showbloglist', { params: { page: action.page, id: action.id } });
+    if (res.data.length < 3) {
+      yield put(changeHasBlogToFalse());
     }
+    const newaction = loadMoreBlog(res.data, action.page + 1);
+    yield put(newaction);
+  } catch (e) {
+    console.log('接口请求失败，错误信息：', e.message);
+  }
 }
 
-function* loadMoreBlogSaga(){
-    yield takeEvery(GET_MORE_BLOG, axiosLoadMoreBlog);
+function* loadMoreBlogSaga() {
+  yield takeEvery(GET_MORE_BLOG, axiosLoadMoreBlog);
 }
 
-function* axiosLoadSearchResult(action){
-    try {
-        const res = yield axios.get('/test/showSearchContent',{params:{page: 0,searchData: action.data}});
-        if( res.data.length < 3){
-            yield put(changeHasBlogToFalse());
-        }
-        const newaction = getBlogListAction(res.data);
-        yield put(newaction); // 相当于store.dispatch   
-    }catch(e){
-        console.log('接口请求失败，错误信息：', e.message);
+function* axiosLoadSearchResult(action) {
+  try {
+    const res = yield axios.get('/test/showSearchContent', { params: { page: 0, searchData: action.data } });
+    if (res.data.length < 3) {
+      yield put(changeHasBlogToFalse());
     }
+    const newaction = getBlogListAction(res.data);
+    yield put(newaction); // 相当于store.dispatch   
+  } catch (e) {
+    console.log('接口请求失败，错误信息：', e.message);
+  }
 }
 
-function* loadSearchResultSaga(){
-    yield takeEvery(SEARCH_RESULT, axiosLoadSearchResult);
+function* loadSearchResultSaga() {
+  yield takeEvery(SEARCH_RESULT, axiosLoadSearchResult);
 }
 
 function* homeSaga() {
-    yield fork(loadMoreBlogSaga);
-    yield fork(loadbloglistSaga);
-    yield fork(loadSearchResultSaga);
+  yield fork(loadMoreBlogSaga);
+  yield fork(loadbloglistSaga);
+  yield fork(loadSearchResultSaga);
 }
 
 export default homeSaga;

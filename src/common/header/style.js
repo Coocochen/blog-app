@@ -90,16 +90,18 @@ export const Nav = styled.nav`
       max-height:500px;
    }
    &.Navslide-enter{
-     transition: all .5s;
+     max-height: 0px;
    }
    &.Navslide-enter-active{
       max-height: 500px;
+      transition: all .5s;
    }
    &.Navslide-exit{
-   	 transition: all .5s;
+   	 max-height: 500px;
    }
    &.Navslide-exit-active{
-   	 max-height: 0px;
+       max-height: 0px;
+   	 transition: all .5s;
    }
    @media (max-width: 992px){
    	 margin:0px;

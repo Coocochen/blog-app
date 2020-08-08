@@ -1,24 +1,24 @@
-import { takeEvery, put} from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 import {
-	LOAD_TAGS,
+  LOAD_TAGS,
 } from './constants';
 import {
-	initTagsAction,
+  initTagsAction,
 } from './actionCreator';
 
-function* axiosLoadTags(){
-    try{
-        const res  = yield axios.get('/tag/test/taglist');
-        const action = initTagsAction(res.data);
-        yield put(action);
-    }catch(e){
-         console.log('接口请求失败，错误信息：', e.message);
-    }
+function* axiosLoadTags() {
+  try {
+    const res = yield axios.get('/test/tag/taglist');
+    const action = initTagsAction(res.data);
+    yield put(action);
+  } catch (e) {
+    console.log('接口请求失败，错误信息：', e.message);
+  }
 }
 
-function* headerSaga(){
-    yield takeEvery(LOAD_TAGS, axiosLoadTags)
+function* headerSaga() {
+  yield takeEvery(LOAD_TAGS, axiosLoadTags)
 }
 
 export default headerSaga;
